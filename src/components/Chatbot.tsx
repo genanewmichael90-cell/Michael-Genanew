@@ -59,26 +59,43 @@ export const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
-      const chat = ai.chats.create({
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("API Key is missing");
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
+      
+      // Prepare history for generateContent
+      // The model expects 'user' and 'model' roles
+      const history = [
+        ...messages.map(msg => ({
+          role: msg.role,
+          parts: [{ text: msg.text }]
+        })),
+        {
+          role: 'user',
+          parts: [{ text: userMessage }]
+        }
+      ];
+
+      const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
+        contents: history,
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
         },
       });
 
-      // We need to provide the history to the chat
-      // sendMessage only takes the message, but we can use the chat object to maintain state if we kept it
-      // For simplicity in this stateless-ish React component, we'll just send the message.
-      // If we wanted full history, we'd need to manage the chat session.
-      
-      const response = await chat.sendMessage({ message: userMessage });
       const botResponse = response.text || "I'm sorry, I couldn't process that. Please try again or contact us directly.";
       
       setMessages(prev => [...prev, { role: 'model', text: botResponse }]);
     } catch (error) {
       console.error("Chatbot Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "Sorry, I'm having trouble connecting. Please try again later." }]);
+      const errorMessage = error instanceof Error && error.message === "API Key is missing" 
+        ? "AI configuration is incomplete. Please ensure the API key is set."
+        : "Sorry, I'm having trouble connecting. Please try again later.";
+      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
