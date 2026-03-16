@@ -40,7 +40,20 @@ export const Chatbot = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [runtimeApiKey, setRuntimeApiKey] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Fetch the API key from our server at runtime
+    fetch('/api/config')
+      .then(res => res.json())
+      .then(data => {
+        if (data.GEMINI_API_KEY) {
+          setRuntimeApiKey(data.GEMINI_API_KEY);
+        }
+      })
+      .catch(err => console.error("Failed to fetch runtime config:", err));
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -59,7 +72,17 @@ export const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
+      // Use the runtime key if available, otherwise fallback to the baked-in one
+      let apiKey = runtimeApiKey || process.env.GEMINI_API_KEY;
+      
+      // If still missing, try one last fetch (just in case)
+      if (!apiKey) {
+        const res = await fetch('/api/config');
+        const data = await res.json();
+        apiKey = data.GEMINI_API_KEY;
+        if (apiKey) setRuntimeApiKey(apiKey);
+      }
+
       if (!apiKey) {
         throw new Error("API Key is missing");
       }
