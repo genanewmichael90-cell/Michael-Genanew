@@ -30,6 +30,7 @@ import {
   MessageCircle,
   Send
 } from 'lucide-react';
+import { Chatbot } from './components/Chatbot';
 
 // --- Components ---
 
@@ -58,7 +59,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string, toggleTheme: () => void
           <img 
             src="https://image2url.com/r2/default/images/1773590606447-3197630d-d8e3-4f44-b499-28a495c78c6a.jpg" 
             alt="NovaWave Logo" 
-            className="h-10 w-auto object-contain"
+            className="h-12 md:h-16 w-auto object-contain mix-blend-screen"
             referrerPolicy="no-referrer"
           />
         </a>
@@ -109,7 +110,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string, toggleTheme: () => void
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 w-full glass md:hidden py-8 px-6 flex flex-col gap-6 backdrop-blur-2xl shadow-2xl overflow-hidden"
+            className="absolute top-full left-0 w-full glass md:hidden py-8 px-6 flex flex-col gap-6 backdrop-blur-2xl shadow-2xl max-h-[calc(100vh-80px)] overflow-y-auto"
           >
             {navLinks.map((link) => (
               <a 
@@ -157,14 +158,14 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-brand-accent mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-xs font-bold uppercase tracking-widest text-brand-accent mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
             </span>
             Future-Ready Digital Agency
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6">
             Ride the Future of <br />
             <span className="gradient-text">Digital Innovation</span> <br />
             with NovaWave
@@ -393,7 +394,7 @@ const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`relative p-8 rounded-3xl flex flex-col ${pkg.popular ? 'bg-brand-purple/20 border-2 border-brand-purple glow-purple scale-105 z-10' : 'glass'}`}
+              className={`relative p-8 rounded-3xl flex flex-col ${pkg.popular ? 'bg-brand-purple/20 glow-purple md:scale-105 z-10' : 'glass'}`}
             >
               {pkg.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-purple rounded-full text-xs font-bold uppercase tracking-widest text-white">
@@ -440,6 +441,11 @@ const Pricing = () => {
 const Portfolio = () => {
   const projects = [
     {
+      title: "HealthBridge ET",
+      url: "https://healthbridgeet.netlify.app/",
+      description: "Comprehensive healthcare bridge platform."
+    },
+    {
       title: "AMEF",
       url: "https://amef.netlify.app",
       description: "Modern web application for AMEF."
@@ -466,7 +472,7 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {projects.map((project, i) => (
             <motion.a
               key={i}
@@ -477,7 +483,7 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group p-8 rounded-3xl glass hover:border-brand-accent/50 transition-all flex flex-col items-center text-center"
+              className="group p-8 rounded-3xl glass transition-all flex flex-col items-center text-center"
             >
               <div className="w-16 h-16 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
                 <ExternalLink size={32} />
@@ -657,7 +663,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-brand-accent outline-none transition-all text-base" 
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
                     placeholder="John Doe" 
                   />
                 </div>
@@ -669,7 +675,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-brand-accent outline-none transition-all text-base" 
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
                     placeholder="john@example.com" 
                   />
                 </div>
@@ -682,7 +688,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-brand-accent outline-none transition-all text-base" 
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
                     placeholder="+1 (555) 000-0000" 
                   />
                 </div>
@@ -692,7 +698,7 @@ const Contact = () => {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-brand-accent outline-none transition-all appearance-none text-base"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all appearance-none text-base"
                   >
                     <option className="bg-brand-blue">Logo Design</option>
                     <option className="bg-brand-blue">Social Media Management</option>
@@ -709,7 +715,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={4} 
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-brand-accent outline-none transition-all text-base" 
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
                   placeholder="Tell us about your project..."
                 ></textarea>
               </div>
@@ -731,12 +737,6 @@ const Team = () => {
       role: "CEO and Founder",
       description: "Visionary leader with a passion for digital transformation and innovative design. Michael drives the creative direction and long-term strategy of NovaWave.",
       img: "https://image2url.com/r2/default/images/1773593056146-3f228030-a44a-4ac8-a337-0257b41496ae.jpg"
-    },
-    {
-      name: "Adonai Fikreselassie",
-      role: "General Manager",
-      description: "Strategic expert focused on operational excellence and client success. Adonai ensures every project meets our high standards of quality and efficiency.",
-      img: "https://image2url.com/r2/default/images/1773593151276-eb9ace60-3fb2-4f08-a6c4-67b0cc6bac03.jpg"
     }
   ];
 
@@ -746,11 +746,11 @@ const Team = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Meet Our <span className="gradient-text">Staff</span></h2>
           <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
-            The dedicated professionals driving innovation and excellence at NovaWave.
+            The dedicated professional driving innovation and excellence at NovaWave.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="flex justify-center">
           {staff.map((member, i) => (
             <motion.div
               key={i}
@@ -758,7 +758,7 @@ const Team = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-3xl glass flex flex-col items-center text-center group hover:bg-white/5 transition-all"
+              className="p-8 rounded-3xl glass flex flex-col items-center text-center group hover:bg-white/5 transition-all max-w-md"
             >
               <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-2 border-brand-purple/30 group-hover:border-brand-accent transition-colors">
                 <img 
@@ -818,7 +818,7 @@ const Footer = () => {
               <img 
                 src="https://image2url.com/r2/default/images/1773590606447-3197630d-d8e3-4f44-b499-28a495c78c6a.jpg" 
                 alt="NovaWave Logo" 
-                className="h-10 w-auto object-contain"
+                className="h-12 w-auto object-contain mix-blend-screen"
                 referrerPolicy="no-referrer"
               />
             </a>
@@ -847,10 +847,10 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-6">Services</h4>
             <ul className="space-y-4 text-sm text-white/50">
-              <li><a href="#" className="hover:text-brand-accent transition-colors">Brand Identity</a></li>
-              <li><a href="#" className="hover:text-brand-accent transition-colors">UI/UX Design</a></li>
-              <li><a href="#" className="hover:text-brand-accent transition-colors">Social Strategy</a></li>
-              <li><a href="#" className="hover:text-brand-accent transition-colors">Web Apps</a></li>
+              <li><a href="#services" className="hover:text-brand-accent transition-colors">Brand Identity</a></li>
+              <li><a href="#services" className="hover:text-brand-accent transition-colors">UI/UX Design</a></li>
+              <li><a href="#services" className="hover:text-brand-accent transition-colors">Social Strategy</a></li>
+              <li><a href="#services" className="hover:text-brand-accent transition-colors">Web Apps</a></li>
             </ul>
           </div>
 
@@ -909,6 +909,7 @@ export default function App() {
       <Contact />
       <Legal />
       <Footer />
+      <Chatbot />
     </div>
   );
 }

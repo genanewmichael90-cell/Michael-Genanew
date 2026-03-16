@@ -46,7 +46,7 @@
 .glass {
   background-color: var(--glass-bg);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  border: none;
 }
 
 .gradient-text {
