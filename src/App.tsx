@@ -30,7 +30,6 @@ import {
   MessageCircle,
   Send
 } from 'lucide-react';
-import { Chatbot } from './components/Chatbot';
 
 // --- Components ---
 
@@ -909,7 +908,6 @@ export default function App() {
       <Contact />
       <Legal />
       <Footer />
-      <Chatbot />
     </div>
   );
 }
