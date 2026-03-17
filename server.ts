@@ -10,6 +10,17 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  app.use(express.json());
+
+  // API routes
+  app.post("/api/subscribe", (req, res) => {
+    const { email } = req.body;
+    console.log(`Newsletter subscription: ${email}`);
+    // In a real app, you would send an email notification to genanewmichael90@gmail.com here
+    // using a service like Resend, SendGrid, or Nodemailer.
+    res.json({ success: true, message: "Subscribed successfully" });
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

@@ -121,7 +121,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string, toggleTheme: () => void
                 {link.name}
               </a>
             ))}
-            <a href="#pricing" className="w-full py-4 rounded-xl bg-brand-purple text-center font-bold shadow-lg glow-purple" onClick={() => setIsOpen(false)}>
+            <a href="#pricing" className="w-full py-4 rounded-xl bg-brand-purple text-center font-bold shadow-lg glow-purple text-white" onClick={() => setIsOpen(false)}>
               Start Project
             </a>
           </motion.div>
@@ -169,14 +169,14 @@ const Hero = () => {
             <span className="gradient-text">Digital Innovation</span> <br />
             with NovaWave
           </h1>
-          <p className="text-lg text-white/60 mb-10 max-w-lg leading-relaxed">
+          <p className="text-lg text-[var(--text-secondary)] mb-10 max-w-lg leading-relaxed">
             We help brands grow through powerful design, strategic social media management, and high-performance websites.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="#pricing" className="px-8 py-4 rounded-full bg-brand-purple hover:bg-brand-purple/80 transition-all font-bold flex items-center gap-2 glow-purple">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+            <a href="#pricing" className="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-purple hover:bg-brand-purple/80 transition-all font-bold flex items-center justify-center gap-2 glow-purple text-white">
               Start Your Project <ArrowRight size={20} />
             </a>
-            <a href="#services" className="px-8 py-4 rounded-full glass hover:bg-white/10 transition-all font-bold">
+            <a href="#services" className="w-full sm:w-auto px-8 py-4 rounded-full glass hover:bg-white/10 transition-all font-bold text-[var(--text-primary)] text-center">
               View Our Services
             </a>
           </div>
@@ -222,7 +222,7 @@ const About = () => {
           <h2 className="text-4xl font-bold mb-6">
             Empowering Brands in the <span className="gradient-text">Digital Era</span>
           </h2>
-          <p className="text-lg text-white/60 mb-8 leading-relaxed">
+          <p className="text-lg text-[var(--text-secondary)] mb-8 leading-relaxed">
             NovaWave Digital Solutions PLC is a forward-thinking digital agency dedicated to helping businesses establish a powerful online presence. We blend creativity with cutting-edge technology to deliver results that matter.
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-6 mb-10">
@@ -235,18 +235,18 @@ const About = () => {
                 <div className="w-6 h-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
                   <CheckCircle2 size={14} />
                 </div>
-                <span className="text-white/80 text-sm">{item}</span>
+                <span className="text-[var(--text-secondary)] text-sm">{item}</span>
               </div>
             ))}
           </div>
           <div className="grid grid-cols-2 gap-6 max-w-md mx-auto">
             <div className="p-4 rounded-2xl glass">
               <h4 className="font-bold text-brand-accent mb-1">Creativity</h4>
-              <p className="text-xs text-white/50">Pushing boundaries of design.</p>
+              <p className="text-xs text-[var(--text-secondary)]">Pushing boundaries of design.</p>
             </div>
             <div className="p-4 rounded-2xl glass">
               <h4 className="font-bold text-brand-accent mb-1">Reliability</h4>
-              <p className="text-xs text-white/50">Your success is our priority.</p>
+              <p className="text-xs text-[var(--text-secondary)]">Your success is our priority.</p>
             </div>
           </div>
         </motion.div>
@@ -282,12 +282,12 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our <span className="gradient-text">Expertise</span></h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
+          <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
             We provide comprehensive digital solutions tailored to your business goals.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, i) => (
             <motion.div
               key={i}
@@ -301,7 +301,7 @@ const Services = () => {
                 <service.icon size={32} className="text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-              <p className="text-white/60 leading-relaxed mb-6">
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
                 {service.description}
               </p>
             </motion.div>
@@ -385,7 +385,7 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {packages.map((pkg, i) => (
             <motion.div
               key={i}
@@ -393,7 +393,7 @@ const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`relative p-8 rounded-3xl flex flex-col ${pkg.popular ? 'bg-brand-purple/20 glow-purple md:scale-105 z-10' : 'glass'}`}
+              className={`relative p-8 rounded-3xl flex flex-col w-full ${pkg.popular ? 'bg-brand-purple/20 glow-purple md:scale-105 z-10' : 'glass'}`}
             >
               {pkg.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-purple rounded-full text-xs font-bold uppercase tracking-widest text-white">
@@ -524,12 +524,12 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Client <span className="gradient-text">Success Stories</span></h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
+          <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
             Hear from the businesses we've helped reach new heights.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
@@ -542,13 +542,13 @@ const Testimonials = () => {
               <div className="flex gap-1 text-brand-accent mb-6">
                 {[...Array(5)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
               </div>
-              <p className="text-lg text-white/80 italic mb-8 leading-relaxed">
+              <p className="text-lg text-[var(--text-secondary)] italic mb-8 leading-relaxed">
                 "{t.content}"
               </p>
               <div className="flex items-center gap-4">
                 <div>
                   <h5 className="font-bold">{t.name}</h5>
-                  <p className="text-xs text-white/50">{t.role}</p>
+                  <p className="text-xs text-[var(--text-secondary)]">{t.role}</p>
                 </div>
               </div>
             </motion.div>
@@ -593,7 +593,7 @@ const Contact = () => {
             <h2 className="text-5xl font-bold mb-6">
               Let's Build Something <span className="gradient-text">Amazing</span> Together.
             </h2>
-            <p className="text-lg text-white/60 mb-10 leading-relaxed">
+            <p className="text-lg text-[var(--text-secondary)] mb-10 leading-relaxed">
               Ready to elevate your digital presence? Fill out the form and our team will get back to you within 24 hours.
             </p>
             
@@ -655,49 +655,49 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/70">Full Name</label>
+                  <label className="text-sm font-medium text-[var(--text-secondary)]">Full Name</label>
                   <input 
                     type="text" 
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base text-[var(--text-primary)]" 
                     placeholder="John Doe" 
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/70">Email Address</label>
+                  <label className="text-sm font-medium text-[var(--text-secondary)]">Email Address</label>
                   <input 
                     type="email" 
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base text-[var(--text-primary)]" 
                     placeholder="john@example.com" 
                   />
                 </div>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/70">Phone Number</label>
+                  <label className="text-sm font-medium text-[var(--text-secondary)]">Phone Number</label>
                   <input 
                     type="tel" 
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base text-[var(--text-primary)]" 
                     placeholder="+1 (555) 000-0000" 
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/70">Service Needed</label>
+                  <label className="text-sm font-medium text-[var(--text-secondary)]">Service Needed</label>
                   <select 
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all appearance-none text-base"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all appearance-none text-base text-[var(--text-primary)]"
                   >
                     <option className="bg-brand-blue">Logo Design</option>
                     <option className="bg-brand-blue">Social Media Management</option>
@@ -707,18 +707,18 @@ const Contact = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/70">Your Message</label>
+                <label className="text-sm font-medium text-[var(--text-secondary)]">Your Message</label>
                 <textarea 
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   rows={4} 
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base" 
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 focus:bg-white/10 outline-none transition-all text-base text-[var(--text-primary)]" 
                   placeholder="Tell us about your project..."
                 ></textarea>
               </div>
-              <button type="submit" className="w-full py-4 rounded-xl bg-brand-purple hover:bg-brand-purple/80 transition-all font-bold glow-purple">
+              <button type="submit" className="w-full py-4 rounded-xl bg-brand-purple hover:bg-brand-purple/80 transition-all font-bold glow-purple text-white">
                 Send Message
               </button>
             </form>
@@ -736,6 +736,12 @@ const Team = () => {
       role: "CEO and Founder",
       description: "Visionary leader with a passion for digital transformation and innovative design. Michael drives the creative direction and long-term strategy of NovaWave.",
       img: "https://image2url.com/r2/default/images/1773593056146-3f228030-a44a-4ac8-a337-0257b41496ae.jpg"
+    },
+    {
+      name: "Adonai Fikreselassie",
+      role: "General Manager",
+      description: "Expert in operational excellence and strategic growth. Adonai ensures seamless service delivery and high-level client satisfaction across all NovaWave projects.",
+      img: "https://image2url.com/r2/default/images/1773754300418-b7ca015b-b286-4689-b219-826a74bff9b9.jpg"
     }
   ];
 
@@ -745,11 +751,11 @@ const Team = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Meet Our <span className="gradient-text">Staff</span></h2>
           <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
-            The dedicated professional driving innovation and excellence at NovaWave.
+            The dedicated professionals driving innovation and excellence at NovaWave.
           </p>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex flex-wrap justify-center gap-8">
           {staff.map((member, i) => (
             <motion.div
               key={i}
@@ -757,7 +763,7 @@ const Team = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-3xl glass flex flex-col items-center text-center group hover:bg-white/5 transition-all max-w-md"
+              className="p-8 rounded-3xl glass flex flex-col items-center text-center group hover:bg-white/5 transition-all w-full md:max-w-md"
             >
               <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-2 border-brand-purple/30 group-hover:border-brand-accent transition-colors">
                 <img 
@@ -808,6 +814,35 @@ const Legal = () => {
 };
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setSubscribed(true);
+        setEmail('');
+      }
+    } catch (error) {
+      console.error('Subscription error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <footer className="pt-24 pb-12 bg-black/40 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
@@ -821,12 +856,12 @@ const Footer = () => {
                 referrerPolicy="no-referrer"
               />
             </a>
-            <p className="text-white/50 text-sm leading-relaxed">
+            <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
               Leading the digital revolution with innovative design and high-performance solutions for modern businesses.
             </p>
             <div className="flex gap-4">
               {[Instagram, Twitter, Linkedin, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-brand-purple transition-all text-white/70 hover:text-white">
+                <a key={i} href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-brand-purple transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
                   <Icon size={18} />
                 </a>
               ))}
@@ -835,7 +870,7 @@ const Footer = () => {
 
           <div>
             <h4 className="font-bold mb-6">Quick Links</h4>
-            <ul className="space-y-4 text-sm text-white/50">
+            <ul className="space-y-4 text-sm text-[var(--text-secondary)]">
               <li><a href="#about" className="hover:text-brand-accent transition-colors">About Us</a></li>
               <li><a href="#services" className="hover:text-brand-accent transition-colors">Our Services</a></li>
               <li><a href="#pricing" className="hover:text-brand-accent transition-colors">Pricing Plans</a></li>
@@ -845,7 +880,7 @@ const Footer = () => {
 
           <div>
             <h4 className="font-bold mb-6">Services</h4>
-            <ul className="space-y-4 text-sm text-white/50">
+            <ul className="space-y-4 text-sm text-[var(--text-secondary)]">
               <li><a href="#services" className="hover:text-brand-accent transition-colors">Brand Identity</a></li>
               <li><a href="#services" className="hover:text-brand-accent transition-colors">UI/UX Design</a></li>
               <li><a href="#services" className="hover:text-brand-accent transition-colors">Social Strategy</a></li>
@@ -855,21 +890,42 @@ const Footer = () => {
 
           <div>
             <h4 className="font-bold mb-6">Newsletter</h4>
-            <p className="text-sm text-white/50 mb-4">Subscribe to get the latest digital trends.</p>
-            <div className="flex gap-2">
-              <input type="email" className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm outline-none focus:border-brand-accent flex-grow" placeholder="Email" />
-              <button className="p-2 bg-brand-purple rounded-lg hover:bg-brand-purple/80 transition-all">
-                <ArrowRight size={18} />
-              </button>
-            </div>
+            <p className="text-sm text-[var(--text-secondary)] mb-4">Subscribe to get the latest digital trends.</p>
+            {subscribed ? (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-4 rounded-xl bg-brand-accent/10 border border-brand-accent/20 text-brand-accent font-bold text-sm"
+              >
+                You're subscribed!
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
+                <input 
+                  type="email" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm outline-none focus:border-brand-accent flex-grow text-[var(--text-primary)]" 
+                  placeholder="Email" 
+                />
+                <button 
+                  type="submit"
+                  disabled={loading}
+                  className="p-2 bg-brand-purple rounded-lg hover:bg-brand-purple/80 transition-all text-white disabled:opacity-50 flex items-center justify-center"
+                >
+                  <ArrowRight size={18} />
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30 uppercase tracking-widest">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[var(--text-secondary)] uppercase tracking-widest">
           <p>© 2026 NovaWave Digital Solutions PLC. All rights reserved.</p>
           <div className="flex gap-8">
-            <a href="#legal" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#legal" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#legal" className="hover:text-[var(--text-primary)] transition-colors">Privacy Policy</a>
+            <a href="#legal" className="hover:text-[var(--text-primary)] transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>
